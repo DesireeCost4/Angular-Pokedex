@@ -10,17 +10,11 @@ import { environment } from 'src/environments/environment';
 })
 export class PokemonService {
 
-  private baseURL:string=""
-  private pokeData: pokemonData | any
+  private baseURL:string = environment.pokeApi;
 
-  constructor(private http:HttpClient)
-    {
-      this.baseURL = environment.pokeApi
+  constructor(private http:HttpClient) {}
 
-    }
-
-  getPokemon(pokemoName:string): Observable <pokemonData> {
-   this.pokeData = this.http.get<pokemonData>(`${this.baseURL}${pokemoName}`)
-    return this.pokeData
+  getPokemon(pokemonName:string): Observable<pokemonData> {
+    return this.http.get<pokemonData>(`${this.baseURL}${pokemonName}`);
   }
 }
